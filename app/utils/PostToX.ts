@@ -13,6 +13,7 @@ interface PostToXResponse {
 
 export default async function PostToX(params: PostToXParams): Promise<PostToXResponse> {
   try {
+    
     console.log('Attempting to post to X...');
     
     // Check if credentials exist
