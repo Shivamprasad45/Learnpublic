@@ -1,6 +1,8 @@
 import DbConnect from '../../../../lib/mongodb';
 import User from '../../../../models/User';
 import { NextRequest, NextResponse } from 'next/server';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,12 +25,28 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const user = new User({ email, password, name });
+    // 🔐 Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      email,
+      password: hashedPassword,
+      name,
+    });
+
     await user.save();
+
+    // 🔑 Generate JWT
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET as string,
+      { expiresIn: '7d' }
+    );
 
     return NextResponse.json(
       {
         message: 'User created successfully',
+        token,
         user: {
           id: user._id,
           email: user.email,

@@ -1,6 +1,4 @@
-// app/api/config/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-// import { connectToDatabase } from '@/lib/mongodb';
 import Config from '@/models/Config';
 import DbConnect from '@/lib/mongodb';
 import User from '@/models/User';
