@@ -6,7 +6,7 @@ import Ai from "@/app/utils/Ai";
 import PostToX from "@/app/utils/PostToX"; // Import the X posting utility
 
 export async function GET(request: NextRequest) {
-  console.log("ok")
+  console.log("ok") 
   try {
     await DbConnect();
      const { searchParams } = new URL(request.url);

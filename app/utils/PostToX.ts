@@ -52,7 +52,7 @@ export default async function PostToX(params: PostToXParams): Promise<PostToXRes
     // Log detailed error information
     if (error && typeof error === 'object' && 'data' in error) {
       console.error('Error details:', JSON.stringify((error as any).data, null, 2));
-    }
+    } 
     
     return {
       success: false,

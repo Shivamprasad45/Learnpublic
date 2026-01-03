@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
         { message: 'User already exists' },
         { status: 400 }
       );
-    }
+    } 
 
     // 🔐 Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
